@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura - Curated Collections</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="entry-page" class="entry-page">
+        <div class="video-background">
+            <video autoplay muted loop playsinline>
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-top-aerial-shot-of-seashore-with-rocks-1090-large.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="entry-overlay"></div>
+        <div class="entry-content">
+            <h1 class="entry-title">AURA</h1>
+            <p class="entry-subtitle">Where Style Meets Substance.</p>
+            <button id="enter-store-button" class="entry-button">Explore The Collection</button>
+        </div>
+    </div>
+
+    <div id="main-store" class="container hidden">
+        <header>
+            <h1 class="store-title">Our Collection</h1>
+            <button id="cart-icon" class="cart-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                <span id="cart-count" class="cart-badge">0</span>
+            </button>
+        </header>
+
+        <div class="page-layout">
+            <aside id="sidebar" class="sidebar">
+                <h2>Filters</h2>
+                <div class="filter-group">
+                    <h3>Search</h3>
+                    <input type="search" id="search-input" placeholder="Search by name..." class="search-input">
+                </div>
+                <div class="filter-group" id="category-filters"><h3>Category</h3></div>
+                <div class="filter-group">
+                    <h3>Price Range</h3>
+                    <input type="range" id="price-slider" min="0" max="2000" value="2000">
+                    <p>Up to: $<span id="price-value">2000</span></p>
+                </div>
+                <div class="filter-group">
+                    <h3>Sort By</h3>
+                    <select id="sort-select">
+                        <option value="rating-desc" selected>Top Rated</option>
+                        <option value="default">Relevance</option>
+                        <option value="price-asc">Price: Low to High</option>
+                        <option value="price-desc">Price: High to Low</option>
+                    </select>
+                </div>
+            </aside>
+
+            <main id="products-grid" class="products-grid"></main>
+        </div>
+    </div>
+
+    <div id="side-cart" class="side-cart">
+        <div class="cart-header">
+            <h2>Your Cart</h2>
+            <button id="close-cart-btn" class="close-btn">×</button>
+        </div>
+        <div id="cart-items-container" class="cart-items-container">
+            </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Subtotal</span>
+                <span id="cart-subtotal">$0.00</span>
+            </div>
+            <button id="checkout-button" class="checkout-btn">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <div id="checkout-page" class="checkout-page hidden">
+        <div class="checkout-container">
+            <div id="checkout-flow-container">
+                <h1>Checkout</h1>
+                <div class="checkout-summary">
+                    <h2>Order Summary</h2>
+                    <div id="checkout-summary-items"></div>
+                    <p class="checkout-total">Total: <span id="checkout-total-price">$0.00</span></p>
+                </div>
+                <form id="payment-form">
+                    <h2>Payment & Shipping Information</h2>
+                    <input type="text" placeholder="Full Name" required>
+                    <input type="email" placeholder="Email Address" required>
+                    <input type="text" placeholder="Shipping Address" required>
+                    <button type="submit" class="action-button">Place Your Order</button>
+                    <button type="button" id="back-to-store-btn">Back to Collection</button>
+                </form>
+            </div>
+             <div id="order-success" class="hidden">
+                <h2>Thank You!</h2>
+                <p>Your order has been placed successfully. A confirmation will be sent shortly.</p>
+                <button id="return-to-store-btn">Continue Shopping</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

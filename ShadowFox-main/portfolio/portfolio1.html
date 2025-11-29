@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nithish M N  | Portfolio</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-dark-navy: #0a192f;
+            --bg-light-navy: #112240;
+            --text-lightest: #ccd6f6;
+            --text-light: #a8b2d1;
+            --text-dark: #8892b0;
+            --accent-color: #64ffda; /* A vibrant techy cyan/green */
+            --border-color: #233554;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-dark-navy);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 0 2rem;
+        }
+        
+        h1, h2, h3 { font-weight: 600; color: var(--text-lightest); }
+        
+        /* --- Animations --- */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        /* --- Header & Nav --- */
+        header {
+            background: rgba(10, 25, 47, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 10px 30px -10px rgba(2,12,27,0.7);
+        }
+        header .container { display: flex; justify-content: space-between; align-items: center; }
+        header .logo a { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--accent-color); text-decoration: none; }
+        header nav ul { list-style: none; display: flex; }
+        header nav ul li { margin-left: 1.2rem; }
+        header nav ul li a { font-weight: 500; color: var(--text-light); text-decoration: none; transition: color 0.3s ease; font-size: 0.9rem; }
+        header nav ul li a:hover { color: var(--accent-color); }
+
+        /* --- Hero Section --- */
+        #hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-height: 100vh;
+        }
+        .hero-text .greeting { color: var(--accent-color); font-size: 1.2rem; margin-bottom: 1rem; }
+        .hero-text h1 { font-family: 'Space Grotesk', sans-serif; font-size: 3.8rem; line-height: 1.1; margin-bottom: 0.5rem; color: var(--text-lightest); }
+        .hero-text h2 { font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; line-height: 1.1; color: var(--text-light); margin-bottom: 1.5rem; }
+        .hero-text .typing-text { color: var(--accent-color); }
+        .hero-text p { max-width: 540px; color: var(--text-dark); margin: 0 auto 2.5rem auto; }
+        
+        .btn {
+            display: inline-block;
+            background: transparent;
+            color: var(--accent-color);
+            padding: 0.75rem 1.75rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 1px solid var(--accent-color);
+        }
+        .btn:hover { background: rgba(100, 255, 218, 0.1); }
+        
+        /* --- Content Sections --- */
+        section { padding: 6rem 0; }
+        .section-title {
+            font-size: 2rem;
+            color: var(--text-lightest);
+            display: flex;
+            align-items: center;
+            margin-bottom: 2.5rem;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            position: relative;
+            top: 2px;
+            width: 200px;
+            height: 1px;
+            margin-left: 20px;
+            background-color: var(--border-color);
+        }
+
+        /* --- About Section --- */
+        #about .about-content { max-width: 800px; }
+        #about p { color: var(--text-dark); }
+        
+        /* --- Skills Section --- */
+        #skills { background: var(--bg-light-navy); }
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+        .skill-card {
+            background-color: var(--bg-dark-navy);
+            padding: 2rem;
+            border-radius: 8px;
+        }
+        .skill-card h3 { display: flex; align-items: center; gap: 1rem; color: var(--text-lightest); margin-bottom: 1rem; }
+        .skill-card i { color: var(--accent-color); font-size: 1.2rem; }
+        .skill-card ul { list-style: none; display: flex; flex-wrap: wrap; gap: 0.75rem; }
+        .skill-card li { background-color: var(--bg-light-navy); padding: 0.4rem 1rem; border-radius: 4px; font-size: 0.9rem; color: var(--text-light); }
+
+        /* --- Experience & Education Timeline --- */
+        #education, #more-about-me { background: var(--bg-light-navy); }
+        .timeline { max-width: 800px; margin: 0 auto; position: relative; }
+        .timeline-item {
+            position: relative;
+            padding: 1rem 1rem 1rem 40px;
+            margin-bottom: 2rem;
+            background: var(--bg-dark-navy);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+        }
+        .timeline-item::before { content: ''; position: absolute; left: 15px; top: 24px; bottom: -2rem; width: 2px; background-color: var(--border-color); }
+        .timeline-item:last-child::before { display: none; }
+        .timeline-icon {
+            position: absolute;
+            left: 0;
+            top: 15px;
+            width: 32px;
+            height: 32px;
+            background: var(--bg-light-navy);
+            border: 2px solid var(--border-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-color);
+            font-size: 1rem;
+        }
+        .timeline-item h3 { font-size: 1.2rem; margin-bottom: 0.2rem; }
+        .timeline-item .date { font-size: 0.9rem; color: var(--text-dark); margin-bottom: 0.5rem; }
+        .timeline-item p { color: var(--text-dark); font-size: 1rem;}
+        
+        /* --- Card Styles (for Projects) --- */
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1rem;}
+        
+        .project-card {
+            background-color: var(--bg-light-navy);
+            padding: 2rem;
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .project-card:hover { transform: translateY(-7px); box-shadow: 0 10px 30px -15px rgba(2,12,27,0.7); }
+        .project-card .project-content { flex-grow: 1; }
+        .project-card p { color: var(--text-dark); }
+        .project-card .project-links { margin-bottom: 1.5rem; }
+        .project-card .project-links a { color: var(--text-light); margin-right: 1rem; font-size: 1.3rem; }
+        .project-card .project-links a:hover { color: var(--accent-color); }
+        .project-card .tags { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: auto; }
+        .project-card .tag { font-family: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', monospace; font-size: 0.8rem; color: var(--text-dark); }
+        
+        /* --- More About Me (Achievements & Activities) --- */
+        .more-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+        .list-section h3 { margin-bottom: 1.5rem; color: var(--accent-color); font-size: 1.2rem;}
+        .custom-list { list-style: none; }
+        .custom-list li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 0.8rem;
+            color: var(--text-dark);
+        }
+        .custom-list li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+        }
+
+        /* --- Contact --- */
+        #contact { text-align: center; }
+        #contact h2 { font-size: 2.5rem; }
+        #contact p { max-width: 600px; margin: 1rem auto 2rem auto; color: var(--text-dark); }
+        
+        /* --- Footer --- */
+        footer { padding: 1.5rem 0; text-align: center; color: var(--text-dark); font-size: 0.9rem; }
+        footer .social-links a { margin: 0 0.75rem; color: var(--text-dark); font-size: 1.2rem; }
+        footer .social-links a:hover { color: var(--accent-color); }
+        
+        /* --- Responsive Design --- */
+        @media(max-width: 768px) {
+            header nav { display: none; } /* Mobile menu can be added later */
+            .hero-text h1 { font-size: 2.8rem; }
+            .hero-text h2 { font-size: 1.8rem; }
+            .section-title { font-size: 1.8rem; }
+            .section-title::after { width: 100px; }
+            .about-grid, .more-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="logo"><a href="#">Nithish M N</a></div>
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero">
+            <div class="container">
+                <div class="hero-text">
+                    <p class="greeting fade-in">Hi, my name is</p>
+                    <h1 class="fade-in" data-delay="100">Nithish M N</h1>
+                    <h2 class="fade-in" data-delay="200">I am a <span class="typing-text" id="typewriter"></span></h2>
+                    <p class="fade-in" data-delay="300">I'm an enthusiastic Computer Science student specializing in creating innovative, user-centric digital experiences from concept to deployment.</p>
+                    <a href="mailto:nithishnmn778@gmail.com" class="btn fade-in" data-delay="400">Get In Touch</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about">
+            <div class="container">
+                <h2 class="section-title fade-in">About Me</h2>
+                <div class="about-content fade-in">
+                    <p>Hello! I'm Nithish M N, a driven student at SVCE College of Engineering with a strong foundation in software development. My curiosity constantly pushes me to explore new domains, from building scalable web applications to developing
+                         intelligent machine learning models. I thrive in collaborative environments and am always seeking opportunities 
+                         to apply my skills to real-world challenges.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <div class="container">
+                <h2 class="section-title fade-in">My Technical Toolkit</h2>
+                <div class="skills-grid">
+                    <div class="skill-card fade-in">
+                        <h3><i class="fas fa-code"></i> Languages</h3>
+                        <ul><li>Java</li><li>Python</li><li>SQL</li><li>JavaScript</li></ul>
+                    </div>
+                    <div class="skill-card fade-in" data-delay="100">
+                        <h3><i class="fas fa-server"></i> Web & Databases</h3>
+                        <ul><li>HTML</li><li>CSS</li><li>Node.js</li></ul>
+                    </div>
+                    <div class="skill-card fade-in" data-delay="200">
+                        <h3><i class="fas fa-brain"></i> AI, Tools & Concepts</h3>
+                        <ul><li>TensorFlow</li><li>Scikit-learn</li><li>Data Structures</li><li>Problem Solving</li></ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education">
+            <div class="container">
+                <h2 class="section-title fade-in">Education</h2>
+                <div class="timeline">
+                    <div class="timeline-item fade-in">
+                        <div class="timeline-icon"><i class="fas fa-graduation-cap"></i></div>
+                        <h3>B.E, Computer Science & Engineering</h3>
+                        <p class="date">SVCE College of Engineering (2023 - 2027)</p>
+                        <p>Currently maintaining a strong academic record with a CGPA of 9.23 / 10.00.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Experience Section -->
+        <section id="experience">
+            <div class="container">
+                <h2 class="section-title fade-in">Where I've Worked</h2>
+                <div class="timeline">
+                    <div class="timeline-item fade-in">
+                        <div class="timeline-icon"><i class="fas fa-briefcase"></i></div>
+                        <h3>Web Developer Intern @ <span style="color:var(--accent-color)">Neoshaan Technologies</span></h3>
+                        <p class="date">Present - July 2025</p>
+                    </div>
+                    <div class="timeline-item fade-in" data-delay="100">
+                        <div class="timeline-icon"><i class="fab fa-python"></i></div>
+                        <h3>Python Developer Intern @ <span style="color:var(--accent-color)">Codsoft</span></h3>
+                        <p class="date">July 2024 - Aug 2024</p>
+                        <p>Developed Python scripts for data processing, resulting in a 15% reduction in processing time.</p>
+                    </div>
+                    <div class="timeline-item fade-in" data-delay="200">
+                        <div class="timeline-icon"><i class="fas fa-robot"></i></div>
+                        <h3>AI-ML Intern @ <span style="color:var(--accent-color)">IBM Skills Build</span></h3>
+                        <p class="date">May 2024 - June 2024</p>
+                        <p>Utilized TensorFlow and Scikit-learn to build an image classification model with 92% accuracy.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <div class="container">
+                 <h2 class="section-title fade-in">Some Things I've Built</h2>
+                <div class="grid projects-grid">
+                    <div class="card project-card fade-in">
+                        <div class="project-content">
+                            <div class="project-links">
+                                
+                                <a href="https://www.canva.com/design/DAGcWQqiW4c/HrXRbfmTkw5UiYvYARuMUg/edit" target="_blank" aria-label="External Link"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                            <h3>Human Skin Type Classification</h3>
+                            <p>A deep learning system for dermatological analysis. Implemented CNNs to classify skin types, achieving 94.57% accuracy.</p>
+                        </div>
+                        <div class="tags"><span class="tag">Python</span><span class="tag">TensorFlow</span><span class="tag">CNN</span></div>
+                    </div>
+                    <div class="card project-card fade-in" data-delay="100">
+                        <div class="project-content">
+                             <div class="project-links">
+                                <a href="https://github.com/nithishnmn778/boop" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                            <h3>Custom Image Classifier</h3>
+                            <p>A tool enabling users to train custom image classifiers using transfer learning. Great for specialized datasets.</p>
+                        </div>
+                        <div class="tags"><span class="tag">Python</span><span class="tag">ML</span><span class="tag">Transfer Learning</span></div>
+                    </div>
+                    <div class="card project-card fade-in" data-delay="200">
+                        <div class="project-content">
+                             <div class="project-links">
+                                <a href="https://github.com/nithishnmn778/boop" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                            <h3>Task Management App</h3>
+                            <p>A web-based task manager featuring CRUD functionality using DOM Manipulation and Event Handling.</p>
+                        </div>
+                        <div class="tags"><span class="tag">JavaScript</span><span class="tag">HTML</span><span class="tag">CSS</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- More About Me Section -->
+        <section id="more-about-me">
+            <div class="container">
+                <h2 class="section-title fade-in">More About Me</h2>
+                <div class="more-grid">
+                    <div class="list-section fade-in">
+                        <h3>Achievements & Certifications</h3>
+                        <ul class="custom-list">
+                            <li>UDACITY AWS AIML with Python Scholar (Nanodegree).</li>
+                            <li>Selected for Infosys Pragati: Path to Future (Cohort5).</li>
+                            <li>Delivered CS curriculum to 30+ school children.</li>
+                            <li>Participant in SMART IDEA CHALLENGE 2023.</li>
+                            <li>Certified in "The Joy of Computing using Python" (NPTEL).</li>
+                            <li>Certified in "Java Training" (IIT Bombay).</li>
+                        </ul>
+                    </div>
+                    <div class="list-section fade-in" data-delay="100">
+                        <h3>Activities & Interests</h3>
+                        <ul class="custom-list">
+                            <li>Member & Co-Chair, ACM Community.</li>
+                            <li>Coordinator, CSE Tech-Club.</li>
+                            <li>Hosted various cultural events in college.</li>
+                            <li>Active member of the singing club.</li>
+                            <li>Runner-up in drawing competition.</li>
+                            <li>NSS Volunteer for community service.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="container">
+                <h2 class="fade-in">Get In Touch</h2>
+                <p class="fade-in" data-delay="100">I'm currently seeking new opportunities and am open to collaboration. Whether you have a question or just want to connect, my inbox is always open!</p>
+                <a href="mailto:nithishnmn778@gmail.com" class="btn fade-in" data-delay="200">Say Hello</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/nithish-kumar-5560a52ab?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/nithishnmn778/boop" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            </div>
+            <p>© 2024 Ponnaganti Gayathri. Designed & Built with inspiration.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- Typewriter Effect ---
+        const words = ["a Full Stack Developer.", "an AI/ML Enthusiast.", "a Problem Solver."];
+        let i = 0;
+        let j = 0;
+        let currentWord = "";
+        let isDeleting = false;
+        const typewriterElement = document.getElementById("typewriter");
+
+        function type() {
+            if (!typewriterElement) return;
+            currentWord = words[i];
+            if (isDeleting) {
+                typewriterElement.textContent = currentWord.substring(0, j - 1);
+                j--;
+                if (j === 0) {
+                    isDeleting = false;
+                    i++;
+                    if (i === words.length) { i = 0; }
+                    setTimeout(type, 500); // Pause before typing new word
+                } else {
+                    setTimeout(type, 50); // Deleting speed
+                }
+            } else {
+                typewriterElement.textContent = currentWord.substring(0, j + 1);
+                j++;
+                if (j === currentWord.length) {
+                    isDeleting = true;
+                    setTimeout(type, 2000); // Pause after typing word
+                } else {
+                    setTimeout(type, 120); // Typing speed
+                }
+            }
+        }
+        
+        // --- Fade-in on Scroll ---
+        const faders = document.querySelectorAll('.fade-in');
+        const scrollObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const delay = parseInt(entry.target.getAttribute('data-delay') || 0);
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, delay);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        faders.forEach(fader => {
+            scrollObserver.observe(fader);
+        });
+
+        // Start typewriter after page loads
+        window.onload = function() {
+            type();
+        };
+    </script>
+</body>
+</html>
